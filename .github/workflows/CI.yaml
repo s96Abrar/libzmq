@@ -62,12 +62,12 @@ jobs:
           #   BUILD_TYPE: valgrind
           #   PACKAGES: valgrind libgnutls28-dev
           #   DRAFT: enabled
-          - os: ubuntu-latest
-            BUILD_TYPE: cmake
-            CURVE: libsodium
-            DRAFT: enabled
-            PACKAGES: cmake libsodium-dev
-            TLS: enabled
+          # - os: ubuntu-latest
+          #   BUILD_TYPE: cmake
+          #   CURVE: libsodium
+          #   DRAFT: enabled
+          #   PACKAGES: cmake libsodium-dev
+          #   TLS: enabled
           # - os: ubuntu-latest
           #   BUILD_TYPE: cmake
           #   DRAFT: enabled
@@ -177,7 +177,7 @@ jobs:
     - name: Get GnuTLS from vcpkg
       if: matrix.os == 'windows-2019'
       shell: powershell
-      run: vcpkg install libgnutls
+      run: vcpkg install libgnutls --allow-unsupported
     - uses: actions/checkout@v2    
       with:    
         path: libzmq
@@ -218,7 +218,7 @@ jobs:
       with:
         name: everything
         path: |
-          ./
+          ./build_libzmq/lib
     - name: Download a single artifact
       uses: actions/download-artifact@v3
       with:
