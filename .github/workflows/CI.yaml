@@ -196,6 +196,12 @@ jobs:
       shell: bash
       working-directory: libzmq
       run: ./ci_build.sh
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v3.1.3
+      with:
+        name: everything
+        path: |
+          ./
     - name: coveralls
       if: matrix.BUILD_TYPE == 'coverage' && github.repository == 'zeromq/libzmq'
       uses: coverallsapp/github-action@master
